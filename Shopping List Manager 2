@@ -1,0 +1,39 @@
+shopping_list = []
+
+def show_list():
+    if not shopping_list:
+        print("\nYour list is empty.")
+    else:
+        print("\n--- Shopping List ---")
+        for i, item in enumerate(shopping_list, 1):
+            print(f"{i}. {item}")
+
+while True:
+    print("\n1. Add Item\n2. View List\n3. Remove Item\n4. Exit")
+    try:
+        choice = int(input("Choose an option: "))
+    except ValueError:
+        print("Error: Please enter a valid number.")
+        continue
+
+    if choice == 1:
+        item = input("Enter item: ")
+        shopping_list.append(item)
+    elif choice == 2:
+        show_list()
+    elif choice == 3:
+        show_list()
+        if shopping_list:
+            try:
+                item_no = int(input("Enter number to remove: "))
+                # Removing using index safely
+                removed = shopping_list.pop(item_no - 1)
+                print(f"'{removed}' removed.")
+            except (ValueError, IndexError):
+                print("Error: Invalid item number.")
+    elif choice == 4:
+        break
+    else:
+        print("Invalid choice. Please try again.")
+
+print("Goodbye!")
